@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background: #f0f0f0;
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        .form-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border: 2px solid #000;
+            padding: 30px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0 15px 0;
+            background: #f0f0f0;
+            padding: 8px 10px;
+            border-left: 4px solid #000;
+        }
+
+        .form-row {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .form-row .label {
+            width: 150px;
+            font-weight: bold;
+            font-size: 16px;
+            padding-top: 8px;
+        }
+
+        .form-row .field {
+            flex: 1;
+        }
+
+        .form-row .field input[type="text"],
+        .form-row .field input[type="email"],
+        .form-row .field input[type="tel"],
+        .form-row .field textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #999;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14px;
+        }
+
+        .form-row .field textarea {
+            resize: vertical;
+        }
+
+        .dob-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .dob-group select {
+            padding: 8px;
+            border: 1px solid #999;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14px;
+            background: white;
+        }
+
+        .gender-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            padding-top: 5px;
+        }
+
+        .gender-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: normal;
+        }
+
+        .hobbies-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            padding-top: 5px;
+        }
+
+        .hobbies-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: normal;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .country-input {
+            background: #e8e8e8;
+            cursor: not-allowed;
+        }
+
+        .qualification-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        .qualification-table th,
+        .qualification-table td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .qualification-table th {
+            background: #f0f0f0;
+            font-weight: bold;
+        }
+
+        .qualification-table td input {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #ccc;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 13px;
+        }
+
+        .qualification-table td input[type="text"] {
+            width: 100%;
+        }
+
+        
+        .courses-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .courses-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: normal;
+            font-size: 15px;
+        }
+
+        
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn-submit, .btn-reset {
+            padding: 12px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .btn-submit {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background: #45a049;
+        }
+
+        .btn-reset {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-reset:hover {
+            background: #da190b;
+        }
+
+        hr {
+            margin: 25px 0;
+            border: none;
+            border-top: 1px dashed #ccc;
+        }
+
+        .students-table {
+            margin-top: 30px;
+        }
+
+        .students-table h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        table.data-table th,
+        table.data-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table.data-table th {
+            background: #f0f0f0;
+            font-weight: bold;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            color: #999;
+        }
+
+        .message {
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .section-divider {
+            margin: 20px 0;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h1>STUDENT REGISTRATION FORM</h1>
+
+    <form method="POST" action="" id="registrationForm">
+        <!-- FIRST NAME & LAST NAME -->
+        <div class="form-row">
+            <div class="label">FIRST NAME</div>
+            <div class="field">
+                <input type="text" name="first_name" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="label">LAST NAME</div>
+            <div class="field">
+                <input type="text" name="last_name" required>
+            </div>
+        </div>
+
+        
+        <div class="form-row">
+            <div class="label">DATE OF BIRTH</div>
+            <div class="field">
+                <div class="dob-group">
+                    <select name="dob_day" required>
+                        <option value="">Day</option>
+                        <?php for($i=1; $i<=31; $i++): ?>
+                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                        <?php endfor; ?>
+                    </select>
+                    <select name="dob_month" required>
+                        <option value="">Month</option>
+                        <?php for($i=1; $i<=12; $i++): ?>
+                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                        <?php endfor; ?>
+                    </select>
+                    <select name="dob_year" required>
+                        <option value="">Year</option>
+                        <?php for($i=2024; $i>=1950; $i--): ?>
+                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                        <?php endfor; ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="form-row">
+            <div class="label">EMAIL ID</div>
+            <div class="field">
+                <input type="email" name="email" required>
+            </div>
+        </div>
+
+        <!-- MOBILE NUMBER -->
+        <div class="form-row">
+            <div class="label">MOBILE NUMBER</div>
+            <div class="field">
+                <input type="tel" name="mobile" required pattern="[0-9]{10,15}">
+            </div>
+        </div>
+
+        
+        <div class="form-row">
+            <div class="label">GENDER</div>
+            <div class="field">
+                <div class="gender-group">
+                    <label><input type="radio" name="gender" value="Male"> Male</label>
+                    <label><input type="radio" name="gender" value="Female"> Female</label>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="form-row">
+            <div class="label">ADDRESS</div>
+            <div class="field">
+                <textarea name="address" rows="3" required></textarea>
+            </div>
+        </div>
+
+        <!-- CITY -->
+        <div class="form-row">
+            <div class="label">CITY</div>
+            <div class="field">
+                <input type="text" name="city" required>
+            </div>
+        </div>
+
+        
+        <div class="form-row">
+            <div class="label">PIN CODE</div>
+            <div class="field">
+                <input type="text" name="pin_code" required pattern="[0-9]{6}">
+            </div>
+        </div>
+
+        
+        <div class="form-row">
+            <div class="label">STATE</div>
+            <div class="field">
+                <input type="text" name="state" required>
+            </div>
+        </div>
+
+                <div class="form-row">
+            <div class="label">COUNTRY</div>
+            <div class="field">
+                <input type="text" name="country" value="India" readonly class="country-input">
+            </div>
+        </div>
+
+        <!-- HOBBIES -->
+        <div class="form-row">
+            <div class="label">HOBBIES</div>
+            <div class="field">
+                <div class="hobbies-group">
+                    <label><input type="checkbox" name="hobbies[]" value="Drawing"> Drawing</label>
+                    <label><input type="checkbox" name="hobbies[]" value="Singing"> Singing</label>
+                    <label><input type="checkbox" name="hobbies[]" value="Dancing"> Dancing</label>
+                    <label><input type="checkbox" name="hobbies[]" value="Sketching"> Sketching</label>
+                    <label><input type="checkbox" name="hobbies[]" value="Others"> Others</label>
+                </div>
+            </div>
+        </div>
+
+        
+        <h2>QUALIFICATION</h2>
+        <table class="qualification-table">
+            <thead>
+                <tr>
+                    <th>SL.No.</th>
+                    <th>Examination</th>
+                    <th>Board</th>
+                    <th>Percentage</th>
+                    <th>Year of Passing</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Class X</td>
+                    <td><input type="text" name="board_x" placeholder="(10 char max)" maxlength="10"></td>
+                    <td><input type="text" name="percentage_x" placeholder="(upto 2 decimal)" pattern="[0-9]{1,2}(\.[0-9]{1,2})?"></td>
+                    <td><input type="text" name="year_x" placeholder="Year" pattern="[0-9]{4}"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Class XII</td>
+                    <td><input type="text" name="board_xii" placeholder="(10 char max)" maxlength="10"></td>
+                    <td><input type="text" name="percentage_xii" placeholder="(upto 2 decimal)" pattern="[0-9]{1,2}(\.[0-9]{1,2})?"></td>
+                    <td><input type="text" name="year_xii" placeholder="Year" pattern="[0-9]{4}"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Graduation</td>
+                    <td><input type="text" name="board_grad" placeholder="(10 char max)" maxlength="10"></td>
+                    <td><input type="text" name="percentage_grad" placeholder="(upto 2 decimal)" pattern="[0-9]{1,2}(\.[0-9]{1,2})?"></td>
+                    <td><input type="text" name="year_grad" placeholder="Year" pattern="[0-9]{4}"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Masters</td>
+                    <td><input type="text" name="board_masters" placeholder="(10 char max)" maxlength="10"></td>
+                    <td><input type="text" name="percentage_masters" placeholder="(upto 2 decimal)" pattern="[0-9]{1,2}(\.[0-9]{1,2})?"></td>
+                    <td><input type="text" name="year_masters" placeholder="Year" pattern="[0-9]{4}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        
+        <h2>COURSES APPLIED FOR</h2>
+        <div class="courses-group">
+            <label><input type="radio" name="course" value="BCA"> BCA</label>
+            <label><input type="radio" name="course" value="B.Com"> B.Com</label>
+            <label><input type="radio" name="course" value="B.Sc"> B.Sc</label>
+            <label><input type="radio" name="course" value="B.A"> B.A</label>
+        </div>
+
+        <!-- SUBMIT & RESET BUTTONS -->
+        <div class="button-group">
+            <button type="submit" name="submit" class="btn-submit">Submit</button>
+            <button type="reset" class="btn-reset">Reset</button>
+        </div>
+    </form>
+
+    <div id="messageBox" class="message"></div>
+
+    <hr>
+
+    <div class="students-table">
+        <h3>Registered Students:</h3>
+        <?php
+        // Database connection
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "student_registrationDB";
+
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        if ($conn->connect_error) {
+            echo '<div class="no-data">Database connection failed: ' . $conn->connect_error . '</div>';
+        } else {
+            $result = $conn->query("SELECT * FROM students ORDER BY created_at DESC");
+            
+            if ($result && $result->num_rows > 0) {
+                echo '<table class="data-table">';
+                echo '<thead>';
+                echo '<tr>';
+                echo '<th>First Name</th>';
+                echo '<th>Last Name</th>';
+                echo '<th>DOB</th>';
+                echo '<th>Email</th>';
+                echo '<th>Mobile</th>';
+                echo '<th>Gender</th>';
+                echo '<th>Address</th>';
+                echo '<th>City</th>';
+                echo '<th>Pin Code</th>';
+                echo '<th>State</th>';
+                echo '<th>Country</th>';
+                echo '<th>Hobbies</th>';
+                echo '</tr>';
+                echo '</thead>';
+                echo '<tbody>';
+                
+                while($row = $result->fetch_assoc()) {
+                    echo '<tr>';
+                    echo '<td>' . htmlspecialchars($row['first_name']) . '</td>';
+                    echo '<td>' . htmlspecialchars($row['last_name']) . '</td>';
+                    echo '<td>' . $row['dob_day'] . '/' . $row['dob_month'] . '/' . $row['dob_year'] . '</td>';
+                    echo '<td>' . htmlspecialchars($row['email']) . '</td>';
+                    echo '<td>' . htmlspecialchars($row['mobile']) . '</td>';
+                    echo '<td>' . $row['gender'] . '</td>';
+                    echo '<td>' . htmlspecialchars($row['address']) . '</td>';
+                    echo '<td>' . htmlspecialchars($row['city']) . '</td>';
+                    echo '<td>' . htmlspecialchars($row['pin_code']) . '</td>';
+                    echo '<td>' . htmlspecialchars($row['state']) . '</td>';
+                    echo '<td>' . htmlspecialchars($row['country']) . '</td>';
+                    echo '<td>' . htmlspecialchars($row['hobbies'] ?: '—') . '</td>';
+                    echo '</tr>';
+                }
+                
+                echo '</tbody>';
+                echo '</table>';
+            } else {
+                echo '<div class="no-data">No records found.</div>';
+            }
+        }
+        $conn->close();
+        ?>
+    </div>
+</div>
+
+<script>
+    <?php if(isset($message) && $message): ?>
+    const msgBox = document.getElementById('messageBox');
+    msgBox.innerHTML = '<?php echo addslashes($message); ?>';
+    msgBox.className = 'message show <?php echo $messageType; ?>';
+    setTimeout(() => {
+        msgBox.classList.remove('show');
+    }, 4000);
+    <?php endif; ?>
+</script>
+</body>
+</html>
