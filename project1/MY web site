@@ -1,0 +1,30 @@
+<html>
+<head>
+	<title>urubuga rwanjye</title>
+</head>
+<body>
+	<div style="height: 40px;width: 100%;background-color: blue;float: left\;">
+		<input type="text" name="text" style="margin: 3px;">
+		<button style="width: 90px;">Search...</button>
+	</div>
+	<div style="height:600px;width: 300px;background-color: yellow;margin: -0.5px;float: left;">
+		<ul type="disc">
+			<a href="" ><li>Home</li></a> 
+			<a href="" ><li>About Us</li></a>
+			<a href="" ><li>Contact Us</li></a>
+			<a href="" ><li>Doc</li></a>
+		</ul>
+		
+	</div>
+    <center><p style="font-size: 200%;"><b>My Web site</b></p></center>
+    <div style="height:210px;width:1016px;float: left;margin: 10px;background-repeat:no-repeat ;background-size: cover;background-position: center;background-position-y: -5px;">
+<img src="project1.jpeg" style="height:210px;width:240px"></div>
+ 
+ <br><br><br>
+ <div></div>
+  <div style="height:210px;width:1016px;float: left;margin: 10px;background-repeat:no-repeat ;background-size: cover;background-position: center;background-position-y: -5px;background-color: ;">
+<p style="padding-right: -40px;">
+As the software industry moves into the second decade of the 21st century,software quality is increasingly becoming essential to all businesses and knoweldege of software testing is becoming necessary for all software engineers.The course focus on the in the theorectical concepts of software testing with high emphasis on inclusion of the practical context which is equally needed to prepare the learner for the demands of this field in the workplace</p>
+</div>   
+</body>
+</html>
